@@ -1,6 +1,14 @@
 [
   {
     "body": {
+      "ja": "作業通話、あんまり好きじゃないけど、そうでもしないと一生音楽聴いて時間盲がやめられないから、仕方なく始めることがある",
+      "en": ""
+    },
+    "createdAt": "2026-03-17T05:34:27.099Z",
+    "published": true
+  },
+  {
+    "body": {
       "ja": "短文の記録置き場。Twitter や Bluesky みたいな感覚で使う予定です。",
       "en": "A place for short notes. I plan to use it more like Twitter or Bluesky."
     },
