@@ -76,6 +76,15 @@
     "id": "escape",
     "puzzles": [
       {
+        "title": "ザ・リミット2",
+        "links": [
+          {
+            "platform": "other",
+            "url": "https://www.taito.co.jp/kurayami/limit2?shinjuku"
+          }
+        ]
+      },
+      {
         "title": "旧校舎の花子さん カイ",
         "links": [
           {
