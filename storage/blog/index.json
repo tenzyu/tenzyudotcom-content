@@ -83,5 +83,18 @@
       ],
       "title": "エイムとフィンガーコントロールとリズムの統合：総合的なスキル向上法"
     }
+  },
+  {
+    "pathname": "blog/how-i-use-obsidian.mdx",
+    "slug": "how-i-use-obsidian",
+    "metadata": {
+      "publishedAt": "2024-09-29T07:51:00.000Z",
+      "summary": "復刻記事、昔のオレがどのように Obsidian を始めたかの備忘録です。今もこれをベースにしています。",
+      "tags": [
+        "Productivity",
+        "Obsidian"
+      ],
+      "title": "【復刻】私の Obsidian の使い方を紹介します。"
+    }
   }
 ]
