@@ -76,6 +76,15 @@
     "id": "escape",
     "puzzles": [
       {
+        "title": "旧校舎の花子さん カイ",
+        "links": [
+          {
+            "platform": "other",
+            "url": "https://www.taito.co.jp/kurayami/hanako-san_kai?shinjuku"
+          }
+        ]
+      },
+      {
         "title": "ダンジョンからの脱出Ⅱ",
         "links": [
           {
