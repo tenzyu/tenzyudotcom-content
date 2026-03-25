@@ -44,14 +44,15 @@
       },
       {
         "title": "pink",
+        "url": "https://play.google.com/store/apps/details?id=air.com.bartbonte.pink",
         "links": [
-          {
-            "platform": "ios",
-            "url": "https://apps.apple.com/jp/app/pink-game/id1548980409"
-          },
           {
             "platform": "android",
             "url": "https://play.google.com/store/apps/details?id=air.com.bartbonte.pink"
+          },
+          {
+            "platform": "ios",
+            "url": "https://apps.apple.com/jp/app/pink-game/id1548980409"
           }
         ]
       },
