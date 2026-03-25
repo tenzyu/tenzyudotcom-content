@@ -33,12 +33,12 @@
         "title": "purple",
         "links": [
           {
-            "platform": "ios",
-            "url": "https://apps.apple.com/jp/app/purple-game/id6503608929"
-          },
-          {
             "platform": "android",
             "url": "https://play.google.com/store/apps/details?id=air.com.bartbonte.purple"
+          },
+          {
+            "platform": "ios",
+            "url": "https://apps.apple.com/jp/app/purple-game/id6503608929"
           }
         ]
       },
