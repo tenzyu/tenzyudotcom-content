@@ -76,6 +76,15 @@
     "id": "escape",
     "puzzles": [
       {
+        "title": "ダンジョンからの脱出Ⅱ",
+        "links": [
+          {
+            "platform": "other",
+            "url": "http://super-escape.co.jp/wp/room02/"
+          }
+        ]
+      },
+      {
         "title": "謎の壁からの脱出",
         "links": [
           {
@@ -99,15 +108,6 @@
           {
             "platform": "other",
             "url": "https://www.taito.co.jp/kurayami/hanako-san_kai?shinjuku"
-          }
-        ]
-      },
-      {
-        "title": "ダンジョンからの脱出Ⅱ",
-        "links": [
-          {
-            "platform": "other",
-            "url": "http://super-escape.co.jp/wp/room02/"
           }
         ]
       }
