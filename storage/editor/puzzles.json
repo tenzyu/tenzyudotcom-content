@@ -62,6 +62,10 @@
           {
             "platform": "android",
             "url": "https://play.google.com/store/apps/details?id=air.com.gamebrain.hocus"
+          },
+          {
+            "platform": "ios",
+            "url": "https://apps.apple.com/jp/app/hocus/id1030548464"
           }
         ]
       }
