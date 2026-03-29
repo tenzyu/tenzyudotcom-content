@@ -3,6 +3,15 @@
     "id": "web",
     "puzzles": [
       {
+        "title": "はじめてのきょうりょく",
+        "links": [
+          {
+            "platform": "web",
+            "url": "https://beespiel.net/posts/hajimete/"
+          }
+        ]
+      },
+      {
         "title": "ぼたんぼたん",
         "url": "https://beespiel.net/posts/button/",
         "links": [
