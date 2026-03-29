@@ -3,6 +3,16 @@
     "id": "web",
     "puzzles": [
       {
+        "title": "ぼたんぼたん",
+        "url": "https://beespiel.net/posts/button/",
+        "links": [
+          {
+            "platform": "web",
+            "url": "https://beespiel.net/posts/button/"
+          }
+        ]
+      },
+      {
         "title": "push",
         "links": [
           {
