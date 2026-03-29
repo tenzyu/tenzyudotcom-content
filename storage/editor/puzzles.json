@@ -17,6 +17,16 @@
     "id": "mobile",
     "puzzles": [
       {
+        "title": "Escape game Tell a Riddle3",
+        "url": "https://play.google.com/store/apps/details?id=com.Mitsumaro.TellRiddle3",
+        "links": [
+          {
+            "platform": "android",
+            "url": "https://play.google.com/store/apps/details?id=com.Mitsumaro.TellRiddle3"
+          }
+        ]
+      },
+      {
         "title": "Escape game Tell a Riddle2",
         "url": "https://play.google.com/store/apps/details?id=com.mitsumaro.TellRiddle2",
         "links": [
