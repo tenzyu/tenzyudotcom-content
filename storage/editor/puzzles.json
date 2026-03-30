@@ -3,6 +3,16 @@
     "id": "web",
     "puzzles": [
       {
+        "title": "Space Alone",
+        "url": "https://beespiel.net/posts/space/",
+        "links": [
+          {
+            "platform": "web",
+            "url": "https://beespiel.net/posts/space/"
+          }
+        ]
+      },
+      {
         "title": "伝説の「はにわ」を探せ！！",
         "url": "https://beespiel.net/posts/treasure/",
         "links": [
