@@ -3,6 +3,16 @@
     "id": "web",
     "puzzles": [
       {
+        "title": "伝説の「はにわ」を探せ！！",
+        "url": "https://beespiel.net/posts/treasure/",
+        "links": [
+          {
+            "platform": "web",
+            "url": "https://beespiel.net/posts/treasure/"
+          }
+        ]
+      },
+      {
         "title": "はじめてのきょうりょく",
         "links": [
           {
