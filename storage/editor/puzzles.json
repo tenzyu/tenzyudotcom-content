@@ -176,9 +176,14 @@
     "id": "other",
     "puzzles": [
       {
-        "title": "て",
+        "title": "テストプレイお願いします",
         "url": "https://shop.tumbleweed.jp/items/120178039",
-        "links": []
+        "links": [
+          {
+            "platform": "web",
+            "url": "https://shop.tumbleweed.jp/items/120178039"
+          }
+        ]
       }
     ]
   }
