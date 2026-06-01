@@ -1,5 +1,15 @@
 [
   {
+    "pathname": "blog/just-existing-communication.mdx",
+    "slug": "just-existing-communication",
+    "metadata": {
+      "publishedAt": "2026-06-01T07:51:00.000Z",
+      "summary": "「ただ存在するのみ」というコミュニケーション\r\n\r\n最近、こんな考えを育てている。ただ存在するだけ。\r\n返事を求めず、関係を維持しようともせず、自分の思考や変化を、世界のどこかに置いておく。\r\n相手は見るか見ないかを自由に選べる。こちらからは干渉しない。この非対称性が大事だと思う。",
+      "tags": [],
+      "title": "「ただ存在するのみ」というコミュニケーション"
+    }
+  },
+  {
     "pathname": "blog/i-am-a-stray-llm-harness-engineer.mdx",
     "slug": "i-am-a-stray-llm-harness-engineer",
     "metadata": {
