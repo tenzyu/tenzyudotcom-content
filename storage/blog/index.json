@@ -1,5 +1,22 @@
 [
   {
+    "pathname": "blog/youtube-firefox-pipewire-volume-normalization\".mdx",
+    "slug": "youtube-firefox-pipewire-volume-normalization\"",
+    "metadata": {
+      "publishedAt": "2026-06-12T21:58:00.000Z",
+      "summary": "Firefox + PipeWire で YouTube 再生時にアプリ音量が 73% に戻るように見えた問題を、pactl・WirePlumber state・DevTools で切り分け、YouTube の loudness normalization が原因だと確認して userscript で解決した記録。",
+      "tags": [
+        "nixos",
+        "firefox",
+        "pipewire",
+        "youtube",
+        "volume",
+        "linux"
+      ],
+      "title": "YouTube の音量正規化が Firefox / PipeWire のアプリ音量を 73% に戻すように見えた話"
+    }
+  },
+  {
     "pathname": "blog/just-existing-communication.mdx",
     "slug": "just-existing-communication",
     "metadata": {
