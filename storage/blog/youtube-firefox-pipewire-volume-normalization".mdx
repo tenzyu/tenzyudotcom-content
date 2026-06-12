@@ -1,0 +1,401 @@
+---
+title: YouTube の音量正規化が Firefox / PipeWire のアプリ音量を 73% に戻すように見えた話
+summary: >-
+  Firefox + PipeWire で YouTube 再生時にアプリ音量が 73% に戻るように見えた問題を、pactl・WirePlumber
+  state・DevTools で切り分け、YouTube の loudness normalization が原因だと確認して userscript
+  で解決した記録。
+publishedAt: 2026-06-12T21:58:00.000Z
+tags:
+  - nixos
+  - firefox
+  - pipewire
+  - youtube
+  - volume
+  - linux
+---
+## TL;DR;
+
+Firefox + PipeWire 環境で、YouTube 再生中に Firefox のアプリ音量が pavucontrol 上で 73% に戻るように見えた。  
+最初は NixOS / PipeWire / WirePlumber の設定を疑ったが、原因はそこではなかった。
+
+実際には、YouTube の正規化によってページ内の `HTMLMediaElement.volume` が下げられ、それが Firefox の PipeWire/PulseAudio sink input volume として露出していた。
+
+最終的には、`No YouTube Volume Normalization.user.js` を入れて解決した。  
+https://gist.github.com/abec2304/2782f4fc47f9d010dfaab00f25e69c8a
+
+## 環境
+
+```text
+OS: NixOS 26.05
+WM: Hyprland
+Audio: PipeWire + WirePlumber
+Browser: Firefox
+```
+
+## 症状
+
+YouTube 側の音量バーは 100%。  
+しかし pavucontrol で見ると、Firefox の YouTube 再生ストリームだけが 73% くらいに戻る。
+戻るタイミングは主に以下だった。  
+
+```text
+- YouTube のシークバー操作
+- YouTube の音量バー操作
+- 動画遷移
+```
+
+`pactl` で見ると、同じ Firefox でもストリームごとに音量が違っていた。
+
+```bash
+pactl list sink-inputs | rg -n 'Sink Input|application.name|media.name|Volume'
+```
+
+例:
+
+```text
+Sink Input #231
+  Volume: front-left: 65536 / 100% / 0.00 dB, front-right: 65536 / 100% / 0.00 dB
+  application.name = "Firefox"
+  media.name = "存在 (@FlawInAffection) / X"
+
+Sink Input #377
+  Volume: front-left: 48045 / 73% / -8.09 dB, front-right: 48045 / 73% / -8.09 dB
+  application.name = "Firefox"
+  media.name = "Kep1er 케플러 | 'Yum' M/V - YouTube"
+```
+
+この時点では、Firefox / PipeWire / WirePlumber の per-stream volume 復元が怪しく見える。
+
+## 最初に疑ったもの
+
+### NixOS の Firefox 設定
+
+自分の `firefox.nix` では、主に VAAPI / WebRender / DMABUF などを有効にしていた。
+
+```nix
+programs.firefox = {
+  enable = true;
+  package = pkgs.unstable.firefox;
+
+  profiles.default = {
+    settings = {
+      "gfx.webrender.all" = true;
+      "layers.acceleration.force-enabled" = true;
+      "media.ffmpeg.vaapi.enabled" = true;
+      "media.hardware-video-decoding.force-enabled" = true;
+      "widget.dmabuf.force-enabled" = true;
+    };
+  };
+};
+```
+
+ただ、ここには音量を変えそうな設定はない。  
+怪しいとすれば以下のような pref だが、nixfiles 全体を検索しても出てこなかった。
+
+```bash
+rg -n \
+  'media\.default_volume|media\.volume_scale|volume|youtube|enhancer|sponsor|return-youtube|tampermonkey|violentmonkey|greasemonkey|userscript|extensions\.packages|extensions\.settings' \
+  ~/.nixfiles
+```
+
+出てきたのは、Hyprland の音量キー設定などだけだった。
+
+```nix
+(bind "XF86AudioRaiseVolume" (luaExec "pactl set-sink-volume @DEFAULT_SINK@ +5%"))
+(bind "XF86AudioLowerVolume" (luaExec "pactl set-sink-volume @DEFAULT_SINK@ -5%"))
+```
+
+これは default sink の音量を変えるだけなので、Firefox の YouTube stream だけが 73% に戻る現象とは一致しない。
+
+### WirePlumber の stream-properties
+
+次に WirePlumber の state を見た。
+
+```bash
+wpctl settings node.stream.restore-props
+rg -n 'Firefox|firefox|YouTube|youtube|volume|mute' ~/.local/state/wireplumber -C 3
+```
+
+`node.stream.restore-props` は `true` だった。
+
+`~/.local/state/wireplumber/stream-properties` には、Firefox の出力ストリーム状態が残っていた。
+
+```text
+Output/Audio:application.name:Firefox={
+  "channelMap":["FL", "FR"],
+  "mute":false,
+  "channelVolumes":[1.000000, 1.000000],
+  "volume":1.000000
+}
+```
+
+一時的に `channelVolumes` が `0.394...` になっていたこともあったが、Pirewire, Firefox 側で 100% に戻すと、このファイルも動的に `1.0` へ更新された。  
+つまり、少なくとも今回の主因は「WirePlumber が古い 73% を復元している」ではなさそうだった。  
+この state file は原因というより、現在の stream 状態を保存している鏡に近い。
+
+### default-routes の input volume
+
+途中で以下も見えた。
+
+```text
+alsa_card.pci-0000_00_1f.3:input:analog-input-mic={
+  "channelVolumes":[0.393467, 0.393467]
+}
+```
+
+これは `input:analog-input-mic` なので、マイク側のゲイン。  
+YouTube の再生音量とは関係ない。
+
+## 決定打: DevTools で video.volume を見る
+
+Firefox の DevTools Console で、YouTube ページ上の `<video>` 要素を確認した。
+
+```js
+[...document.querySelectorAll("video")].map(v => ({
+  volume: v.volume,
+  muted: v.muted,
+  paused: v.paused,
+  currentSrc: v.currentSrc
+}))
+```
+
+すると、YouTube の音量バーは 100% に見えているのに、再生中の video element はこうなっていた。
+
+```js
+[
+  {
+    volume: 0.3940034276447456,
+    muted: false,
+    paused: false,
+    currentSrc: "blob:https://www.youtube.com/..."
+  },
+  {
+    volume: 0.38150479427943834,
+    muted: true,
+    paused: true
+  }
+]
+```
+
+`HTMLMediaElement.volume` は `0` から `1` の値で、`1` が最大音量である。  
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume  
+つまり、OS 側に行く前に、YouTube ページ内の media element の実効音量がすでに `0.39` 前後に下げられていた。
+
+次に、YouTube player 側の UI volume と合わせて見る。
+
+```js
+(() => {
+  const p = document.querySelector("#movie_player");
+  const v = [...document.querySelectorAll("video")].find(v => !v.paused)
+    ?? document.querySelector("video");
+
+  return {
+    youtubeUiVolume: p?.getVolume?.(),
+    htmlVideoVolume: v?.volume,
+    expectedPavucontrol: v ? Math.round(Math.cbrt(v.volume) * 100) + "%" : null,
+  };
+})();
+```
+
+結果:
+
+```js
+{
+  youtubeUiVolume: 100,
+  htmlVideoVolume: 0.3940034276447456,
+  expectedPavucontrol: "73%"
+}
+```
+
+YouTube UI では 100%。  
+しかし実際の `HTMLMediaElement.volume` は約 0.39。  
+そしてこの値が Firefox の PipeWire/PulseAudio sink input に反映され、pavucontrol では約 73% に見えていた。
+
+## Stats for nerds でも確認 (盲点だった)
+
+YouTube の動画を右クリックして `Stats for nerds` を開くと、以下のようになっていた。
+
+```text
+Volume / Normalized  100% / 39% (content loudness 4.0dB)
+```
+
+これで原因はほぼ確定した。
+
+```text
+YouTube の音量バー: 100%
+YouTube の正規化後音量: 39%
+HTMLMediaElement.volume: 約 0.39
+PipeWire / PulseAudio 上の Firefox stream: 約 73%
+```
+
+つまり、pavucontrol で見えていた 73% は、NixOS や WirePlumber が勝手に下げていたわけではなく、YouTube の正規化が Firefox の audio stream volume として見えていただけだった。
+
+## 既存の類似報告 (よく探すべき)
+
+同じ問題意識はすでに報告されていた。
+
+Mozilla Bugzilla には、Firefox の YouTube 再生中に PulseAudio 側のアプリ音量が勝手に変わるという報告がある。  
+https://bugzilla.mozilla.org/show_bug.cgi?id=1422637
+
+EndeavourOS forum にも、PipeWire 環境で Firefox の音量が 100% から 75% 付近に戻るという、ほぼ同じ報告があった。  
+https://forum.endeavouros.com/t/inconsistent-audio-volume-in-firefox/14704
+
+そのスレッドでは、`enhanced-h264ify` の `Disable Loudness Normalization` が回避策として挙げられている。  
+https://addons.mozilla.org/en-GB/firefox/addon/enhanced-h264ify/versions/
+
+ただ、自分の用途では codec 制御系の拡張を入れたいわけではなかった。  
+欲しいのは、YouTube の loudness normalization だけを無効化することだった。
+
+## 解決: No YouTube Volume Normalization.user.js
+
+最終的には以下の userscript で解決した。  
+https://gist.github.com/abec2304/2782f4fc47f9d010dfaab00f25e69c8a
+
+このスクリプトは、単純に `setInterval(() => video.volume = 1)` で殴り続けるタイプではない。  
+実装上は、`HTMLMediaElement.prototype.volume` の descriptor を見て、video element 側に `volume` property を shadowing する。  
+つまり、YouTube が `video.volume` を正規化値に書き換える経路そのものに介入する。
+
+Gist 内でも、以下のような処理が見える。
+
+```js
+desc = Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, "volume");
+setter = desc.set;
+
+Object.defineProperty(videoElem, "volume", {
+  get: function () {
+    return 42;
+  },
+  set: function (_ignore) {
+    var toCall = function () {
+      setVolume(volumePanel, videoElem, setter);
+    };
+    window.setTimeout(toCall, 5);
+  }
+});
+```
+
+この方式の良いところは、YouTube が正規化後の値を再注入しても、それをそのまま通さず、YouTube UI の volume panel 側の値を見て実際の video volume を再設定できる点。  
+結果として、自分の環境では以下の問題が消えた。
+
+```text
+- YouTube の音量バー操作後に Firefox stream が 73% に戻る
+- シーク後に pavucontrol の Firefox 音量が下がる
+- video.volume が 0.39 前後へ戻る
+```
+
+## なぜ PipeWire 側で直さなかったか
+
+PipeWire / WirePlumber 側で Firefox の sink input を常に 100% に戻す service を作ることもできる。
+
+例えば、雑にはこういうことができる。
+
+```bash
+pactl list sink-inputs |
+  awk '
+    /^Sink Input #/ { id = substr($3, 2) }
+    /application.name = "Firefox"/ { print id }
+  ' |
+  while read -r id; do
+    pactl set-sink-input-volume "$id" 100%
+  done
+```
+
+ただし、これは最下流で殴っているだけになる。
+
+今回の根は以下だった。
+
+```text
+YouTube player
+  ↓
+HTMLMediaElement.volume = 0.39
+  ↓
+Firefox
+  ↓
+PipeWire / PulseAudio sink input = 73%
+```
+
+PipeWire 側で直すと、YouTube / Firefox が再び stream volume を書き換えるたびに競合する。  
+根本に近いのは、YouTube ページ内の `video.volume` への介入だった。
+
+## 切り分け用コマンドまとめ
+
+### Firefox の live sink input を見る
+
+```bash
+pactl list sink-inputs | rg -n 'Sink Input|application.name|media.name|Volume|module-stream-restore.id'
+```
+
+### WirePlumber の stream restore 設定を見る
+
+```bash
+wpctl settings node.stream.restore-props
+```
+
+### WirePlumber state を見る
+
+```bash
+rg -n 'Firefox|firefox|YouTube|youtube|volume|mute' ~/.local/state/wireplumber -C 3
+```
+
+### nixfiles 内の音量・Firefox 設定を探す
+
+```bash
+rg -n \
+  'media\.default_volume|media\.volume_scale|volume|youtube|enhancer|sponsor|return-youtube|tampermonkey|violentmonkey|greasemonkey|userscript|extensions\.packages|extensions\.settings' \
+  ~/.nixfiles
+```
+
+### YouTube の video element volume を見る
+
+```js
+[...document.querySelectorAll("video")].map(v => ({
+  volume: v.volume,
+  muted: v.muted,
+  paused: v.paused,
+  currentSrc: v.currentSrc
+}))
+```
+
+### YouTube UI volume と実効 volume を同時に見る
+
+```js
+(() => {
+  const p = document.querySelector("#movie_player");
+  const v = [...document.querySelectorAll("video")].find(v => !v.paused)
+    ?? document.querySelector("video");
+
+  return {
+    youtubeUiVolume: p?.getVolume?.(),
+    htmlVideoVolume: v?.volume,
+    expectedPavucontrol: v ? Math.round(Math.cbrt(v.volume) * 100) + "%" : null,
+    muted: v?.muted,
+    paused: v?.paused,
+  };
+})();
+```
+
+## まとめ
+
+今回の問題は、見かけ上は PipeWire / WirePlumber / NixOS の音量復元問題に見えた。  
+しかし実際には、YouTube の正規化が `HTMLMediaElement.volume` を `0.39` 前後へ下げ、その値が Firefox の audio stream volume として PipeWire 側へ見えていただけだった。
+
+最終的な判断はこう。
+
+```text
+NixOS / nixfiles:
+  原因ではなかった
+
+PipeWire / WirePlumber:
+  状態を見せていただけで、主因ではなかった
+
+Firefox:
+  YouTube の media element volume を sink input volume として露出していた
+
+YouTube:
+  loudness normalization によって実効音量を下げていた
+
+解決:
+  No YouTube Volume Normalization.user.js
+```
+
+Linux デスクトップで「Firefox の音量が勝手に 73% に戻る」と見えたときは、まず YouTube なら正規化が要因で、それ以外なら pavucontrol ではなく DevTools で `document.querySelector("video").volume` を見るのがよさそう。
