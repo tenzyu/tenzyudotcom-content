@@ -1,5 +1,15 @@
 [
   {
+    "pathname": "blog/henaii-ga-tarinai.mdx",
+    "slug": "henaii-ga-tarinai",
+    "metadata": {
+      "publishedAt": "2026-07-12T01:08:00.000Z",
+      "summary": "偏愛が足りない",
+      "tags": [],
+      "title": "偏愛が足りない"
+    }
+  },
+  {
     "pathname": "blog/youtube-firefox-pipewire-volume-normalization.mdx",
     "slug": "youtube-firefox-pipewire-volume-normalization",
     "metadata": {
