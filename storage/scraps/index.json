@@ -1,0 +1,27 @@
+[
+  {
+    "slug": "test",
+    "title": "使ってみる",
+    "hypothesis": "##1",
+    "summary": "##2",
+    "status": "open",
+    "tags": [
+      "test"
+    ],
+    "createdAt": "2026-11-13T10:26:07.511Z",
+    "updatedAt": "2026-11-13T10:26:07.511Z",
+    "published": true,
+    "primaryLocale": "ja",
+    "lead": [
+      {
+        "locale": "ja",
+        "state": "original"
+      }
+    ],
+    "indexableLocales": [
+      "ja"
+    ],
+    "entryCount": 0,
+    "hasOutcomes": false
+  }
+]

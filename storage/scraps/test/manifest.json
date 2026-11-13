@@ -1,0 +1,25 @@
+{
+  "id": "test",
+  "slug": "test",
+  "title": "使ってみる",
+  "hypothesis": "##1",
+  "summary": "##2",
+  "status": "open",
+  "tags": [
+    "test"
+  ],
+  "createdAt": "2026-11-13T10:26:07.511Z",
+  "updatedAt": "2026-11-13T10:26:07.511Z",
+  "published": true,
+  "primaryLocale": "ja",
+  "lead": [
+    {
+      "locale": "ja",
+      "pathname": "scraps/test/lead.ja.mdx",
+      "state": "original",
+      "sourceVersion": "e3456bc1f4d270f4a97933758645fdc21e39642b31ca343c1818f7972ac27906",
+      "reviewedAt": "2026-11-13T10:26:07.511Z"
+    }
+  ],
+  "entryIds": []
+}
