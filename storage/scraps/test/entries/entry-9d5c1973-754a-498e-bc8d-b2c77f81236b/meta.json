@@ -1,0 +1,17 @@
+{
+  "id": "entry-9d5c1973-754a-498e-bc8d-b2c77f81236b",
+  "scrapSlug": "test",
+  "kind": "note",
+  "createdAt": "2026-11-20T05:29:01.117Z",
+  "updatedAt": "2026-11-20T05:29:01.117Z",
+  "published": false,
+  "documents": [
+    {
+      "locale": "ja",
+      "pathname": "scraps/test/entries/entry-9d5c1973-754a-498e-bc8d-b2c77f81236b/entry.ja.mdx",
+      "state": "original",
+      "sourceVersion": "8a535a3f4dcd2c396db11b7c1e54221d04375c9f9be96bce47dc2fdb237e86c9",
+      "reviewedAt": "2026-11-20T05:29:01.117Z"
+    }
+  ]
+}
