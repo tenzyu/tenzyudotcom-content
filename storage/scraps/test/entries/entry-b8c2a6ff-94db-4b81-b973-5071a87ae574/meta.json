@@ -1,0 +1,17 @@
+{
+  "id": "entry-b8c2a6ff-94db-4b81-b973-5071a87ae574",
+  "scrapSlug": "test",
+  "kind": "todo",
+  "createdAt": "2026-11-21T06:46:28.853Z",
+  "updatedAt": "2026-11-21T06:46:28.853Z",
+  "published": false,
+  "documents": [
+    {
+      "locale": "ja",
+      "pathname": "scraps/test/entries/entry-b8c2a6ff-94db-4b81-b973-5071a87ae574/entry.ja.mdx",
+      "state": "original",
+      "sourceVersion": "f2adf442c676135845e5b9cb2ba9a83b87582190a0368818e1e4a5b1f52f4ce9",
+      "reviewedAt": "2026-11-21T06:46:28.853Z"
+    }
+  ]
+}
