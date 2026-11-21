@@ -32,14 +32,6 @@
     "category": "Social"
   },
   {
-    "name": "Bluesky",
-    "id": "@tenzyu.com",
-    "url": "https://bsky.app/profile/tenzyu.com",
-    "shortenUrl": "bsky",
-    "icon": "bsky",
-    "category": "Social"
-  },
-  {
     "name": "Ko-fi",
     "id": "@tenzyu",
     "url": "https://ko-fi.com/tenzyu",
@@ -117,6 +109,14 @@
     "url": "https://tenzyu.notion.site/107cca384d6780e0a504f5ee28d9dd94?v=6fc3622a159f4671a7635ebd2e32e5b1",
     "shortenUrl": "osuhistorical",
     "icon": "notion",
+    "category": "Legacy"
+  },
+  {
+    "name": "Bluesky",
+    "id": "@tenzyu.com",
+    "url": "https://bsky.app/profile/tenzyu.com",
+    "shortenUrl": "bsky",
+    "icon": "bsky",
     "category": "Legacy"
   }
 ]
