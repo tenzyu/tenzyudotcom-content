@@ -40,14 +40,6 @@
     "category": "Social"
   },
   {
-    "name": "TikTok",
-    "id": "@flawinaffection",
-    "url": "https://www.tiktok.com/@flawinaffection",
-    "shortenUrl": "tiktok",
-    "icon": "tiktok",
-    "category": "Social"
-  },
-  {
     "name": "Instagram",
     "id": "@flawinaffection",
     "url": "https://www.instagram.com/flawinaffection/",
@@ -117,6 +109,14 @@
     "url": "https://bsky.app/profile/tenzyu.com",
     "shortenUrl": "bsky",
     "icon": "bsky",
+    "category": "Legacy"
+  },
+  {
+    "name": "TikTok",
+    "id": "@flawinaffection",
+    "url": "https://www.tiktok.com/@flawinaffection",
+    "shortenUrl": "tiktok",
+    "icon": "tiktok",
     "category": "Legacy"
   }
 ]
