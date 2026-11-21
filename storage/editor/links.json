@@ -48,14 +48,6 @@
     "category": "Social"
   },
   {
-    "name": "Reddit",
-    "id": "u/tenzyudotcom",
-    "url": "https://www.reddit.com/user/tenzyudotcom/",
-    "shortenUrl": "reddit",
-    "icon": "reddit",
-    "category": "Social"
-  },
-  {
     "name": "osu!",
     "id": "@tenzyu",
     "url": "https://osu.ppy.sh/users/23318599",
@@ -117,6 +109,14 @@
     "url": "https://www.instagram.com/flawinaffection/",
     "shortenUrl": "instagram",
     "icon": "instagram",
+    "category": "Legacy"
+  },
+  {
+    "name": "Reddit",
+    "id": "u/tenzyudotcom",
+    "url": "https://www.reddit.com/user/tenzyudotcom/",
+    "shortenUrl": "reddit",
+    "icon": "reddit",
     "category": "Legacy"
   }
 ]
