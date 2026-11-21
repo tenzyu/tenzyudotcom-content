@@ -17,6 +17,14 @@
   },
   {
     "name": "X",
+    "id": "@tenzyudotcom",
+    "url": "https://x.com/tenzyudotcom",
+    "shortenUrl": "twitter",
+    "icon": "x",
+    "category": "Social"
+  },
+  {
+    "name": "X",
     "id": "@FlawInAffection",
     "url": "https://x.com/FlawInAffection",
     "shortenUrl": "x",
@@ -94,14 +102,6 @@
     "shortenUrl": "tenzyulab",
     "icon": "github",
     "category": "Build"
-  },
-  {
-    "name": "X",
-    "id": "@tenzyudotcom",
-    "url": "https://x.com/tenzyudotcom",
-    "shortenUrl": "twitter",
-    "icon": "x",
-    "category": "Legacy"
   },
   {
     "name": "Reddit",
