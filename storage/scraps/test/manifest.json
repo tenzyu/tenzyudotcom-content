@@ -1,15 +1,14 @@
 {
   "id": "test",
   "slug": "test",
-  "title": "使ってみる",
-  "hypothesis": "##1",
-  "summary": "##2",
+  "title": "preview",
+  "hypothesis": "What does it look like?",
   "status": "open",
   "tags": [
     "test"
   ],
   "createdAt": "2026-11-13T10:26:07.511Z",
-  "updatedAt": "2026-11-20T05:30:13.587Z",
+  "updatedAt": "2026-11-21T06:44:38.835Z",
   "published": true,
   "primaryLocale": "ja",
   "lead": [
@@ -17,8 +16,8 @@
       "locale": "ja",
       "pathname": "scraps/test/lead.ja.mdx",
       "state": "original",
-      "sourceVersion": "e3456bc1f4d270f4a97933758645fdc21e39642b31ca343c1818f7972ac27906",
-      "reviewedAt": "2026-11-13T10:26:07.511Z"
+      "sourceVersion": "56481b8757837d1d7d2e5d114e60743c15756da602658858535baf951df0a405",
+      "reviewedAt": "2026-11-21T06:44:38.835Z"
     }
   ],
   "entryIds": [
