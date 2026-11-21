@@ -64,14 +64,6 @@
     "category": "Build"
   },
   {
-    "name": "GitHub",
-    "id": "@tenzyulab",
-    "url": "https://github.com/tenzyulab",
-    "shortenUrl": "tenzyulab",
-    "icon": "github",
-    "category": "Build"
-  },
-  {
     "name": "Reddit",
     "id": "tenzyuosu",
     "url": "https://www.reddit.com/user/tenzyuosu/",
@@ -117,6 +109,14 @@
     "url": "https://www.reddit.com/user/tenzyudotcom/",
     "shortenUrl": "reddit",
     "icon": "reddit",
+    "category": "Legacy"
+  },
+  {
+    "name": "GitHub",
+    "id": "@tenzyulab",
+    "url": "https://github.com/tenzyulab",
+    "shortenUrl": "tenzyulab",
+    "icon": "github",
     "category": "Legacy"
   }
 ]
