@@ -3,15 +3,15 @@
   "scrapSlug": "test",
   "kind": "experiment",
   "createdAt": "2026-11-21T06:45:18.890Z",
-  "updatedAt": "2026-11-21T06:45:18.890Z",
-  "published": false,
+  "updatedAt": "2026-11-21T06:45:51.509Z",
+  "published": true,
   "documents": [
     {
       "locale": "ja",
       "pathname": "scraps/test/entries/entry-24631ff0-9088-411e-afbd-b9f8bc966851/entry.ja.mdx",
       "state": "original",
       "sourceVersion": "72bf6e495cc8a5b59d1f64e1f03b3fe6449599adb1e7e1d0b84fe1914376941d",
-      "reviewedAt": "2026-11-21T06:45:18.890Z"
+      "reviewedAt": "2026-11-21T06:45:51.509Z"
     }
   ]
 }
