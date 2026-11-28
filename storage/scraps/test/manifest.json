@@ -8,7 +8,7 @@
     "test"
   ],
   "createdAt": "2026-11-13T10:26:07.511Z",
-  "updatedAt": "2026-11-21T06:46:45.149Z",
+  "updatedAt": "2026-11-28T09:12:23.858Z",
   "published": true,
   "primaryLocale": "ja",
   "lead": [
@@ -25,6 +25,7 @@
     "entry-2fa35e5a-8cab-4a64-ab98-505be16185ae",
     "entry-ff3f6248-3c46-4d2e-a5c2-4acf2f8b6376",
     "entry-24631ff0-9088-411e-afbd-b9f8bc966851",
-    "entry-b8c2a6ff-94db-4b81-b973-5071a87ae574"
+    "entry-b8c2a6ff-94db-4b81-b973-5071a87ae574",
+    "entry-abd8fa82-2b1a-446f-b1ed-162cde263012"
   ]
 }
