@@ -24,6 +24,14 @@
     "category": "Social"
   },
   {
+    "name": "osu!",
+    "id": "@tenzyu",
+    "url": "https://osu.ppy.sh/users/23318599",
+    "shortenUrl": "osu",
+    "icon": "osu",
+    "category": "Social"
+  },
+  {
     "name": "Ko-fi",
     "id": "@tenzyu",
     "url": "https://ko-fi.com/tenzyu",
@@ -37,14 +45,6 @@
     "url": "https://discord.gg/vWEypRa86N",
     "shortenUrl": "discord",
     "icon": "discord",
-    "category": "Social"
-  },
-  {
-    "name": "osu!",
-    "id": "@tenzyu",
-    "url": "https://osu.ppy.sh/users/23318599",
-    "shortenUrl": "osu",
-    "icon": "osu",
     "category": "Social"
   },
   {
