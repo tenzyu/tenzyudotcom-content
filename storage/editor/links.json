@@ -24,14 +24,6 @@
     "category": "Social"
   },
   {
-    "name": "X (personal)",
-    "id": "@FlawInAffection",
-    "url": "https://x.com/FlawInAffection",
-    "shortenUrl": "x",
-    "icon": "x",
-    "category": "Social"
-  },
-  {
     "name": "Ko-fi",
     "id": "@tenzyu",
     "url": "https://ko-fi.com/tenzyu",
@@ -126,5 +118,13 @@
     "shortenUrl": "x-main",
     "icon": "x",
     "category": "Build"
+  },
+  {
+    "name": "X (personal)",
+    "id": "@FlawInAffection",
+    "url": "https://x.com/FlawInAffection",
+    "shortenUrl": "x",
+    "icon": "x",
+    "category": "Legacy"
   }
 ]
