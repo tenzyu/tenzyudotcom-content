@@ -32,19 +32,19 @@
     "category": "Social"
   },
   {
-    "name": "Ko-fi",
-    "id": "@tenzyu",
-    "url": "https://ko-fi.com/tenzyu",
-    "shortenUrl": "kofi",
-    "icon": "kofi",
-    "category": "Social"
-  },
-  {
     "name": "Discord",
     "id": "server",
     "url": "https://discord.gg/vWEypRa86N",
     "shortenUrl": "discord",
     "icon": "discord",
+    "category": "Social"
+  },
+  {
+    "name": "Ko-fi",
+    "id": "@tenzyu",
+    "url": "https://ko-fi.com/tenzyu",
+    "shortenUrl": "kofi",
+    "icon": "kofi",
     "category": "Social"
   },
   {
