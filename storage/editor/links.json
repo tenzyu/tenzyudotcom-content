@@ -48,6 +48,14 @@
     "category": "Social"
   },
   {
+    "name": "X",
+    "id": "@tenzyudots",
+    "url": "https://x.com/tenzyudots",
+    "shortenUrl": "twitter",
+    "icon": "x",
+    "category": "Build"
+  },
+  {
     "name": "GitHub",
     "id": "@tenzyu",
     "url": "https://github.com/tenzyu",
@@ -110,14 +118,6 @@
     "shortenUrl": "tenzyulab",
     "icon": "github",
     "category": "Legacy"
-  },
-  {
-    "name": "X",
-    "id": "tenzyudots",
-    "url": "https://x.com/tenzyudots",
-    "shortenUrl": "twitter",
-    "icon": "x",
-    "category": "Build"
   },
   {
     "name": "X (personal)",
